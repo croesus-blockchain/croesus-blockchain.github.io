@@ -8,11 +8,11 @@ This document finalises all pledged deliverables for that funded proposal and al
 
 ## Croesus?
 
-Pronounces (KREE-sus), this project derives its name from the King of Lydia, who - as told by Herodutus [tested the oracles of his time.](https://en.wikipedia.org/wiki/Croesus#Croesus'_votive_offerings_to_Delphi)
+Pronounces (KREE-sus), this project derives its name from the King of Lydia, who - as told by Herodutus - [tested the oracles of his time.](https://en.wikipedia.org/wiki/Croesus#Croesus'_votive_offerings_to_Delphi)
 
 ## Define generic assessment criteria for automated services
 
-Our initial thoughts were to extend the schema.org [SolveMathAction])https://schema.org/SolveMathAction) and [MathSolver](https://schema.org/MathSolver) schemas to create a standards-based structure for registration and assessment of automated services.
+Our initial thoughts were to extend the schema.org [SolveMathAction](https://schema.org/SolveMathAction) and [MathSolver](https://schema.org/MathSolver) schemas to create a standards-based structure for registration and assessment of automated services.
 
 During our early Proofs-of-Concept, it became apparent that these schemas were too verbose, and fell short on being able to support further work we have for this protocol. Therefore, we narrowed the focus down to two different types of reporting elements for the protocol. Registration and Reporting.
 
@@ -26,9 +26,59 @@ Oracles, or any other service (such as a Machine Learning model) can be register
 
 The service itself can be public (via an API), offline or protected (via a API which requires credentials), but the verifiable data must be publicly accessible. Examples of storage places for data are Cloud Storage buckets, IPFS, GitHub repositories or on a website.
 
+The metrics reported can be either integer or floating point numbers. However floating point numbers should be stored as numbers which are multiplied by 1,000,000. For example a number like 3.141592 would be stored as 3141592.
+
+The outcomes struct is a collection of keywords used to search and collate oracles together.
+
+
+
 #### Example
 
-
+```json
+{
+  "name": "Randomiser", 
+  "description": "Returns a postitive integer between 1 and 100",
+  "type": "oracle", # oracle-onchain, oracle-offchain, model, service
+  "metrics": [
+    {
+      "name": "spread",
+      "target": "100", 
+      "dataType": "integer",
+      "description": [
+        "For a given reporting period of 100,000 records how many",
+        "unique random numbers were returned?"
+      ]
+    },
+    {
+      "name": "distribution_max",
+      "target": "1000",
+      "datatype": "integer",
+      "description": [
+        "For a given reporting period of 100,000 records how often",
+        "did the most common number appear?"
+      ]
+    }
+  ],
+  "endpoint": {
+    "type": "public",
+    "domain": "https://www.random.org/",
+    "location": "integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new",
+    "documentation": "https://www.random.org/clients/http/"
+  },
+  "outcomes": [
+    "random",
+    "number",
+    "generation"
+  ],
+  "protocol": "croesus_registration",
+  "validation": [
+									{
+								    "domain": "https://croesus-blockchain.github.io/",
+								    "artefact": "random_file_dev.txt"
+								  }
+			]
+}
+```
 
 Schema
 
