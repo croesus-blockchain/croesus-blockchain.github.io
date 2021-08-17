@@ -72,11 +72,11 @@ The outcomes struct is a collection of keywords used to search and collate oracl
   ],
   "protocol": "croesus_registration",
   "validation": [
-									{
-								    "domain": "https://croesus-blockchain.github.io/",
-								    "artefact": "random_file_dev.txt"
-								  }
-			]
+			{
+				"domain": "https://croesus-blockchain.github.io/",
+				"artefact": "random_file_dev.txt"
+			}
+		]
 }
 ```
 
