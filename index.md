@@ -96,6 +96,7 @@ Reports allow for updates of outcome tags associated with a serivce.
 
 Validation contains the publicly accessible file used to determine the aggregate metrics.
 
+```json
 {
   "protocol": "croesus_report",
   "reference": ["87f500def18b0bc66153ab73fd510ff823f75adb670d1e9274d1cc0241b6ddca"], 
@@ -121,6 +122,7 @@ Validation contains the publicly accessible file used to determine the aggregate
 	}
   ]
 }
+```
 
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
