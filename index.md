@@ -8,7 +8,7 @@ This document finalises all pledged deliverables for that funded proposal and al
 
 ## Croesus?
 
-Pronounces (KREE-sus), this project derives its name from the King of Lydia, who - as told by Herodutus - [tested the oracles of his time.](https://en.wikipedia.org/wiki/Croesus#Croesus'_votive_offerings_to_Delphi)
+Pronounced (KREE-sus), this project derives its name from the King of Lydia, who - as told by Herodutus - [tested the oracles of his time.](https://en.wikipedia.org/wiki/Croesus#Croesus'_votive_offerings_to_Delphi)
 
 ## Define generic assessment criteria for automated services
 
@@ -16,7 +16,7 @@ Our initial thoughts were to extend the schema.org [SolveMathAction](https://sch
 
 During our early Proofs-of-Concept, it became apparent that these schemas were too verbose, and fell short on being able to support further work we have for this protocol. Therefore, we narrowed the focus down to two different types of reporting elements for the protocol. Registration and Reporting.
 
-This approach already has some precedent in the Cardano community. https://nut.link/, the first generation Cardano Oracle registry uses the approach for Oracles themselves.
+This approach already has some precedent in the Cardano community. [nut.link](https://nut.link/), the first generation Cardano Oracle registry uses the approach for Oracles themselves.
 
 ### Registration
 
@@ -30,15 +30,13 @@ The metrics reported can be either integer or floating point numbers. However fl
 
 The outcomes struct is a collection of keywords used to search and collate oracles together.
 
-
-
 #### Example
 
 ```json
 {
   "name": "Randomiser", 
   "description": "Returns a postitive integer between 1 and 100",
-  "type": "oracle", # oracle-onchain, oracle-offchain, model, service
+  "type": "offchain", # onchain | offchain | model | service
   "metrics": [
     {
       "name": "spread",
@@ -80,15 +78,65 @@ The outcomes struct is a collection of keywords used to search and collate oracl
 }
 ```
 
-Schema
+Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
+
+Not shown here in the example is a "reference" field which is an array that can be used to link to another Croesus registration. This field, which is also shown below in a report can be used to create new versions of services, or for Machine Learning use cases where the results and data from one service can be used to build another.
 
 ### Reporting
+
+The registration element only established the first data element in the reporting history of our Oracle. In order to create a time series of data points, we should regularly publish reports.
+
+Reports submitted by the same address as the registration are considered authoritative.
+
+The reference is the transaction hash of the registration.
+
+The metrics are updated values to the targets referened in the registration.
+
+Reports allow for updates of outcome tags associated with a serivce.
+
+Validation contains the publicly accessible file used to determine the aggregate metrics.
+
+{
+  "protocol": "croesus_report",
+  "reference": ["87f500def18b0bc66153ab73fd510ff823f75adb670d1e9274d1cc0241b6ddca"], 
+  "metrics": [
+    {
+      "name": "spread",
+      "value": "99"
+    },
+    {
+      "name": "distribution_max",
+      "target": "1021"
+    }
+  ],
+  "outcomes": [
+    "random",
+    "number",
+    "generation"
+  ],
+  "validation": [
+	{
+		"domain": "https://croesus-blockchain.github.io/",
+		"artefact": "random_file_dev002.txt"
+	}
+  ]
+}
+
+Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
 #### Reporting Validation
 
 A natural consequence of making datasets freely available is that they can be repurposed or used as validation datasets for new services.
 
+So called "Superset Validations" can be leveraged for Distributed Machine Learning use cases, but appear as as a report element in the protocol.
+
 ## What is the incentive for a service owner to create processes which report on metadata?
+
+The maintainer of the oracle, or the community running an oracle pool have an incentive to inform users and the ecosystem how well 
+
+Formalising the reporting mechanism allows the community to build reporting toolsets using the data creating a competitive marketplace for Oracle Services.
+
+Storing the data on the blockchain allows for in-built auto-discovery of players in this marketplace, and the effectiveness of Oracles using verifiable metrics they are contributing.
 
 ## Choose a specific application to create a proof of concept reporting tool
 
@@ -100,28 +148,35 @@ A service which produces a random number or random outcome
 
 Commonly used in gambling and other gaming applications, these need to be assessed based on the spread of values reported.
 
+### Model
 A service which applies a model across a dataset
 
 An example are Machine Learning Models, such as a Credit Scoring application used to assess an entity loan. The reliability / utility of these services are usually based on specific metrics such as Gini or Kolmogorov–Smirnov (KS) test
 
-* A service which reports a currency or token exchange rate
+### Price Oracles
+
+A service which reports a currency or token exchange rate
 
 On-chain reporting of exchange rates can be retrospectively compared against other exchanges to create metrics such as distance from mean
+
+### Event Oracles
 
 * A service which verifies an event occurred
 
 An authoritative peer reporting metric is required to confirm an event was recorded in a timely manner.
 
-#### Auto-Disovery through Metadata
-
-Our project stumbled upon a novel use of blockchain metdata during this research. Metadata reported through the resiliant blockchain network can be used as a native, in-built auto discovery mechanism.
-
-Our project looks to extend this idea and dive deeper into these use cases through a proposal in Catalyst Fund 6.
-
 ## Demonstrate reporting of metadata
+
+In Progress
 
 ## Lessons Learnt
 
+In Progress
+
 ## Unsolved Questions
 
+In Progress
+
 ## Future Work
+
+In Progress
