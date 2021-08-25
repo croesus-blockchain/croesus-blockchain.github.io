@@ -78,6 +78,10 @@ The outcomes struct is a collection of keywords used to search and collate oracl
 }
 ```
 
+Example on Cardano Testnet)
+
+https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=87f500def18b0bc66153ab73fd510ff823f75adb670d1e9274d1cc0241b6ddca
+
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
 Not shown here in the example is a "reference" field which is an array that can be used to link to another Croesus registration. This field, which is also shown below in a report can be used to create new versions of services, or for Machine Learning use cases where the results and data from one service can be used to build another.
@@ -123,6 +127,11 @@ Validation contains the publicly accessible file used to determine the aggregate
   ]
 }
 ```
+
+Example on Cardano Testnet)
+
+https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=010d07dbd15abc91e0ce201d5bc5408714a501b70e50f71a45148aa7f9867f3b
+
 
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
