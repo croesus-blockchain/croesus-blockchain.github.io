@@ -34,53 +34,72 @@ The outcomes struct is a collection of keywords used to search and collate oracl
 
 ```json
 {
-  "name": "Randomiser", 
-  "description": "Returns a postitive integer between 1 and 100",
-  "type": "offchain", # onchain | offchain | model | service
-  "metrics": [
-    {
-      "name": "spread",
-      "target": "100", 
-      "dataType": "integer",
-      "description": [
-        "For a given reporting period of 100,000 records how many",
-        "unique random numbers were returned?"
-      ]
-    },
-    {
-      "name": "distribution_max",
-      "target": "1000",
-      "datatype": "integer",
-      "description": [
-        "For a given reporting period of 100,000 records how often",
-        "did the most common number appear?"
-      ]
+    "11445640693": {
+        "protocol": "croesus_registration_003",
+        "name": "Croesus Demo Randomiser True",
+        "description": "Returns a postitive integer between 1 and 100",
+        "type": "offchain",
+        "metrics": [
+            {
+                "name": "sample",
+                "target": "100000",
+                "dataType": "integer",
+                "description": [
+                    "Number of records for which a report is based"
+                ]
+            },
+            {
+                "name": "spread",
+                "target": "100",
+                "dataType": "integer",
+                "description": [
+                    "For a given reporting period how many",
+                    "unique random numbers were returned?"
+                ]
+            },
+            {
+                "name": "distribution_max",
+                "target": "1000",
+                "datatype": "integer",
+                "description": [
+                    "For a given reporting period how often",
+                    "did the most common number appear?"
+                ]
+            },
+            {
+                "name": "distribution_min",
+                "target": "1000",
+                "datatype": "integer",
+                "description": [
+                    "For a given reporting period how often",
+                    "did the least common number appear?"
+                ]
+            }
+        ],
+        "endpoint": {
+            "type": "public",
+            "domain": "https://www.croesus-blockchain.com/",
+            "location": "randomiser-true",
+            "documentation": "https://www.croesus-blockchain.com/"
+        },
+        "outcomes": [
+            "random",
+            "number",
+            "generation"
+        ],
+        "validation": [
+            {
+                "domain": "https://croesus-blockchain.github.io/",
+                "artefact": "random_true_001.txt"
+            }
+        ]
     }
-  ],
-  "endpoint": {
-    "type": "public",
-    "domain": "https://www.random.org/",
-    "location": "integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new",
-    "documentation": "https://www.random.org/clients/http/"
-  },
-  "outcomes": [
-    "random",
-    "number",
-    "generation"
-  ],
-  "protocol": "croesus_registration",
-  "validation": [
-			{
-				"domain": "https://croesus-blockchain.github.io/",
-				"artefact": "random_file_dev.txt"
-			}
-		]
 }
 ```
 
 Example on Cardano Testnet)
 
-https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=87f500def18b0bc66153ab73fd510ff823f75adb670d1e9274d1cc0241b6ddca
+https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=baa8ced1cfcad8ab96b84c3133007d2f832c2498dfcc7db83c5e9e7d46f5687b
 
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
@@ -102,35 +121,46 @@ Validation contains the publicly accessible file used to determine the aggregate
 
 ```json
 {
-  "protocol": "croesus_report",
-  "reference": ["87f500def18b0bc66153ab73fd510ff823f75adb670d1e9274d1cc0241b6ddca"], 
-  "metrics": [
-    {
-      "name": "spread",
-      "value": "99"
-    },
-    {
-      "name": "distribution_max",
-      "target": "1021"
+    "11445640693": {
+        "protocol": "croesus_003_report",
+        "reference": [
+            "baa8ced1cfcad8ab96b84c3133007d2f832c2498dfcc7db83c5e9e7d46f5687b"
+        ],
+        "outcomes": [
+            "random",
+            "number",
+            "generation",
+            "accurate"
+        ],
+        "validation": {
+            "domain": "https://croesus-blockchain.github.io/",
+            "artefact": "random_true_002.txt"
+        },
+        "metrics": [
+            {
+                "name": "sample",
+                "value": "100000"
+            },
+            {
+                "name": "spread",
+                "value": "100"
+            },
+            {
+                "name": "distribution_max",
+                "value": "1078"
+            },
+            {
+                "name": "distribution_min",
+                "value": "1028"
+            }
+        ]
     }
-  ],
-  "outcomes": [
-    "random",
-    "number",
-    "generation"
-  ],
-  "validation": [
-	{
-		"domain": "https://croesus-blockchain.github.io/",
-		"artefact": "random_file_dev002.txt"
-	}
-  ]
 }
 ```
 
 Example on Cardano Testnet)
 
-https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=010d07dbd15abc91e0ce201d5bc5408714a501b70e50f71a45148aa7f9867f3b
+https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=61ae11e956071ce24e343dc85ca820cef42afaa83ded64386844eae3f879ee4a
 
 
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
@@ -178,16 +208,24 @@ An authoritative peer reporting metric is required to confirm an event was recor
 
 ## Demonstrate reporting of metadata
 
-In Progress
+A rudimentary interface which applies this protocol against the Cardano testnet can be found here: https://www.croesus-blockchain.com/
 
 ## Lessons Learnt
 
-In Progress
+* Meta data transactions written to the blockchain are permanent! Ensure that you get your protocol right on testnet before using mainnet!
+
+* Meta data transactions are a great way auto-discovery mechanism. A consistently applied protocol on the block-chain is a cheap, always-on network resource that can be queried with the right toolset.
 
 ## Unsolved Questions
 
-In Progress
+* Does a reporting framework like this increase competition?
+
+* Are the incentives to report (reputation, validations) more than the incentives to not report (public, permanent record of failures)
+
+* What domains does this framework help, and which does it hurt
+
+* Can Oracle Pools use these metrics as part of governance?
 
 ## Future Work
 
-In Progress
+* Perform a deep-dive into real-world use cases to validate the concept and potential business models of Oracles. Investigate with Fund 6 Proposal.
