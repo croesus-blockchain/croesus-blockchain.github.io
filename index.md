@@ -115,7 +115,7 @@ The reference is the transaction hash of the registration.
 
 The metrics are updated values to the targets referened in the registration.
 
-Reports allow for updates of outcome tags associated with a serivce.
+Reports allow for updates of outcome tags associated with a service.
 
 Validation contains the publicly accessible file used to determine the aggregate metrics.
 
@@ -173,7 +173,7 @@ So called "Superset Validations" can be leveraged for Distributed Machine Learni
 
 ## What is the incentive for a service owner to create processes which report on metadata?
 
-The maintainer of the oracle, or the community running an oracle pool have an incentive to inform users and the ecosystem how well 
+The maintainer of the oracle, or the community running an oracle pool have an incentive to inform users and the ecosystem how well their Oracle performs compared to their competitors.
 
 Formalising the reporting mechanism allows the community to build reporting toolsets using the data creating a competitive marketplace for Oracle Services.
 
@@ -187,22 +187,23 @@ During development of the protocol we observed several categories of services, d
 
 A service which produces a random number or random outcome
 
-Commonly used in gambling and other gaming applications, these need to be assessed based on the spread of values reported.
+Commonly used in gambling and other gaming applications, these need to be assessed based on the spread of values reported. A truly random service will, in aggregate, produce a spread of values across the set of outcomes targetted by the service.
 
 ### Model
+
 A service which applies a model across a dataset
 
-An example are Machine Learning Models, such as a Credit Scoring application used to assess an entity loan. The reliability / utility of these services are usually based on specific metrics such as Gini or Kolmogorov–Smirnov (KS) test
+An example are Machine Learning Models, such as a Credit Scoring application used to assess an entity loan. The reliability / utility of these services are usually based on specific metrics such as Gini or Kolmogorov–Smirnov (KS) test.
 
 ### Price Oracles
 
 A service which reports a currency or token exchange rate
 
-On-chain reporting of exchange rates can be retrospectively compared against other exchanges to create metrics such as distance from mean
+On-chain reporting of exchange rates can be retrospectively compared against other exchanges to create metrics such as distance from mean for the same reporting period.
 
 ### Event Oracles
 
-* A service which verifies an event occurred
+A service which verifies an event occurred
 
 An authoritative peer reporting metric is required to confirm an event was recorded in a timely manner.
 
@@ -210,11 +211,15 @@ An authoritative peer reporting metric is required to confirm an event was recor
 
 A rudimentary interface which applies this protocol against the Cardano testnet can be found here: https://www.croesus-blockchain.com/
 
+We have used a random-true and a random-fullum ("loaded dice") examples to demonstrate the utility of the concept.
+
 ## Lessons Learnt
 
 * Meta data transactions written to the blockchain are permanent! Ensure that you get your protocol right on testnet before using mainnet!
 
-* Meta data transactions are a great way auto-discovery mechanism. A consistently applied protocol on the block-chain is a cheap, always-on network resource that can be queried with the right toolset.
+* Meta data transactions are a great auto-discovery mechanism. A consistently applied protocol on the block-chain is a cheap, always-on network resource that can be queried with the right toolset.
+
+* Simple building blocks like a consistently applied protocol can be scaled and subsequently used as components in other larger services.
 
 ## Unsolved Questions
 
@@ -222,10 +227,28 @@ A rudimentary interface which applies this protocol against the Cardano testnet 
 
 * Are the incentives to report (reputation, validations) more than the incentives to not report (public, permanent record of failures)
 
-* What domains does this framework help, and which does it hurt
+* What domains does this framework help, and which does it hurt?
 
 * Can Oracle Pools use these metrics as part of governance?
 
 ## Future Work
 
 * Perform a deep-dive into real-world use cases to validate the concept and potential business models of Oracles. Investigate with Fund 6 Proposal.
+
+* Of particular interest to the team is the use of this protocol to support Reinforcement Learning for Machine Learning Models, as our approach can be extended to any type of automated service which needs a mechanism to demonstrate its reliability or utility.
+
+Or thought experiments and proof of concepts can be mapped to three specific applications:
+
+### Competiton
+
+What if we had an ecosystem that had many nodes competing to provide the best credit risk algorithm? If all of the nodes periodically reported their results, a natural competitive market place would form.
+
+### Reinforcement Learning
+
+What if each node in the ecosystem could get better at predicting credit risk based on the raw data referenced in each of these reports? A natural reinforcement learning pattern would evolve.
+
+### AI Service Selection
+
+What if Artificial Intelligent agents could use this performance meta data to determine which node in the ecosystem is best to use depending on a particular purpose or context? A natural AI choice model would start to develop.
+
+
