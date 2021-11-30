@@ -261,7 +261,7 @@ One area where the Croesus Protcol could best demonstrate its utility is via a M
 
 The model's output will be summarised as a Risk Score and provided via API as well as visually on a public web resource with data visualisations displaying the primary drivers of fraud risk.
 
-For this initial development, the model will be trained on fraud data from already known, valuable resources in the Cardano community such as the [Cardano Phishing Bot] (https://twitter.com/CardanoPhishing "Cardano Twitter Phishing Bot").
+For this initial development, the model will be trained on fraud data from already known, valuable resources in the Cardano community such as the [Cardano Phishing Bot](https://twitter.com/CardanoPhishing "Cardano Twitter Phishing Bot").
 
 ![Cardano Risk Assessment Tool Mockup](/F8E0F067-9837-4880-B5A4-68F506A0DF72.png)
 
