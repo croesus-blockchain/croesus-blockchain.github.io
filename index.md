@@ -1,10 +1,14 @@
 ## Introduction
 
-This project started as a [Fund 5 Catalyst Proposal for the Cardano Blockchain](https://cardano.ideascale.com/a/dtd/Oracle-Performance-Metrics/352231-48088 "Google's Homepage").
+This project started as a [Fund 5 Catalyst Proposal for the Cardano Blockchain](https://cardano.ideascale.com/a/dtd/Oracle-Performance-Metrics/352231-48088 "Fund 5 Proposal").
 
 Our goal was to periodically store performance metadata that has been appropriately signed for authenticity and provide a tool for aggregating this data.
 
 This document finalises all pledged deliverables for that funded proposal and also poses unsolved questions and future work for the project.
+
+The future work has helped inspire subsequent projects:
+* A [Fund 6 Catalyst Proposal](https://cardano.ideascale.com/a/dtd/Applying-Oracle-Performance-Metrics/369013-48088 "Fund 6 Proposal") to extend the protocol, applying it to three distinct use cases
+* A [Fund 7 Catalyst Proposal](https://cardano.ideascale.com/a/dtd/Cardano-Risk-Assessment-Tool/382089-48088 "Fund 7 Proposal") to demonstrate a real-world application in the form of a Blockchain Risk Assessment Tool
 
 ## Croesus?
 
