@@ -255,7 +255,7 @@ What if each node in the ecosystem could get better at predicting credit risk ba
 
 What if Artificial Intelligent agents could use this performance meta data to determine which node in the ecosystem is best to use depending on a particular purpose or context? A natural AI choice model would start to develop.
 
-## [Fund 7 Proposal](#fund-7-proposal) - Cardano Risk Assessment Tool 
+## [](#fund-7-proposal)Fund 7 Proposal - Cardano Risk Assessment Tool 
 
 One area where the Croesus Protcol could best demonstrate its utility is via a Machine Learning Model service, such as a Cardano Risk Assessment Tool.
 
