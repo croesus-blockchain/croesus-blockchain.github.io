@@ -30,84 +30,72 @@ Oracles, or any other service (such as a Machine Learning model) can be register
 
 The service itself can be public (via an API), offline or protected (via a API which requires credentials), but the verifiable data must be publicly accessible. Examples of storage places for data are Cloud Storage buckets, IPFS, GitHub repositories or on a website.
 
-The metrics reported can be either integer or floating point numbers. However floating point numbers should be stored as numbers which are multiplied by 1,000,000. For example a number like 3.141592 would be stored as 3141592.
-
-The outcomes struct is a collection of keywords used to search and collate oracles together.
+The metrics reported can be either integer or floating point numbers.
 
 #### Example
 
 ```json
 {
-    "11445640693": {
-        "protocol": "croesus_registration_003",
-        "name": "Croesus Demo Randomiser True",
-        "description": "Returns a postitive integer between 1 and 100",
-        "type": "offchain",
-        "metrics": [
-            {
-                "name": "sample",
-                "target": "100000",
-                "dataType": "integer",
-                "description": [
-                    "Number of records for which a report is based"
-                ]
-            },
-            {
-                "name": "spread",
-                "target": "100",
-                "dataType": "integer",
-                "description": [
-                    "For a given reporting period how many",
-                    "unique random numbers were returned?"
-                ]
-            },
-            {
-                "name": "distribution_max",
-                "target": "1000",
-                "datatype": "integer",
-                "description": [
-                    "For a given reporting period how often",
-                    "did the most common number appear?"
-                ]
-            },
-            {
-                "name": "distribution_min",
-                "target": "1000",
-                "datatype": "integer",
-                "description": [
-                    "For a given reporting period how often",
-                    "did the least common number appear?"
-                ]
-            }
-        ],
-        "endpoint": {
-            "type": "public",
-            "domain": "https://www.croesus-blockchain.com/",
-            "location": "randomiser-true",
-            "documentation": "https://www.croesus-blockchain.com/"
-        },
-        "outcomes": [
-            "random",
-            "number",
-            "generation"
-        ],
-        "validation": [
-            {
-                "domain": "https://croesus-blockchain.github.io/",
-                "artefact": "random_true_001.txt"
-            }
-        ]
-    }
+  "11445640693": {
+      "protocol": "croesus_registration_v1",
+      "name": "Registration Name",
+      "description": [
+          "Description of the registration. Note the limit of 64 bytes per ",
+          "line. All 'description' and 'url' fields can be string arrays or",
+          "regular strings."
+      ],
+      "type": "offchain",
+      "metrics": [
+          {
+              "name": "number",
+              "value": "24",
+              "type": "integer",
+              "description": "Integers are supported"
+          },
+          {
+              "name": "pi",
+              "value": "3.14159265",
+              "type": "float",
+              "description": [
+                  "Floats are supported too."
+              ]
+          }
+      ],
+      "endpoint": {
+          "type": "public",
+          "url": [
+              "https://www.croesus-blockchain.com/randomiser-true?seed=",
+              "103841014"
+          ]
+      },
+      "documentation": {
+          "url": "https://www.croesus-blockchain.com/"
+      },
+      "tags": [
+          "random",
+          "number",
+          "generation"
+      ],
+      "validation": {
+          "url": "https://croesus-blockchain.github.io/random_true_001.txt"
+      },
+      "reference": [
+          "(Optional) field used to link with another registration txid.",
+          "Multiple transaction ids (from registrations or reports)",
+          "can be referenced here for super-set validation use-cases",
+          "such as those used for Machine Learning"
+      ]
+  }
 }
 ```
 
 Example on Cardano Testnet)
 
-https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=baa8ced1cfcad8ab96b84c3133007d2f832c2498dfcc7db83c5e9e7d46f5687b
+https://explorer.cardano-testnet.iohkdev.io/en/transaction.html?id=496ad2e3939830fa31ddcea895199a779f4e243492b0783593793116ddeb223d
 
 Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
-Not shown here in the example is a "reference" field which is an array that can be used to link to another Croesus registration. This field, which is also shown below in a report can be used to create new versions of services, or for Machine Learning use cases where the results and data from one service can be used to build another.
+The "reference" field can be used to link to another Croesus registration. Its purpose is to create new versions of services, or for Machine Learning use cases where the results and data from one service can be used to build another.
 
 ### Reporting
 
@@ -125,49 +113,56 @@ Validation contains the publicly accessible file used to determine the aggregate
 
 ```json
 {
-    "11445640693": {
-        "protocol": "croesus_003_report",
-        "reference": [
-            "baa8ced1cfcad8ab96b84c3133007d2f832c2498dfcc7db83c5e9e7d46f5687b"
-        ],
-        "outcomes": [
-            "random",
-            "number",
-            "generation",
-            "accurate"
-        ],
-        "validation": {
-            "domain": "https://croesus-blockchain.github.io/",
-            "artefact": "random_true_002.txt"
-        },
-        "metrics": [
-            {
-                "name": "sample",
-                "value": "100000"
-            },
-            {
-                "name": "spread",
-                "value": "100"
-            },
-            {
-                "name": "distribution_max",
-                "value": "1078"
-            },
-            {
-                "name": "distribution_min",
-                "value": "1028"
-            }
-        ]
-    }
+  "11445640693": {
+      "protocol": "croesus_report_v1",
+      "reference": "baa8ced1cfcad8ab96b84c3133007d2f832c2498dfcc7db83c5e9e7d46f5687b",
+      "note": [
+          "A report can be accompanied by an optional explanatory note",
+          "useful to add additional context to any metrics reported",
+          "for this period. Note that the same set of metrics",
+          "used for registrations should be present in each report"
+      ],
+      "tags": [
+          "Additional",
+          "Optional",
+          "Tags",
+          "Can",
+          "Be",
+          "Provided",
+          "Each",
+          "Report"
+      ],
+      "validation": {
+          "url": [
+              "https://really-long-urls-can-be/broken-up?over=64&byte=string&ar",
+              "rays=1&otherwise=just&use=a&regular=string"
+          ],
+          "description": [
+              "Some explanatory notes can be provided with the",
+              "validation url, which should be publicly accessible.",
+              "Croesus Reporting tools should note validations that",
+              "have broken links"
+          ]
+      },
+      "metrics": [
+          {
+              "name": "number",
+              "value": "100000"
+          },
+          {
+              "name": "pi",
+              "value": "3.14159265"
+          }
+      ]
+  }
 }
 ```
 
 Example on Cardano Testnet)
 
-https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=61ae11e956071ce24e343dc85ca820cef42afaa83ded64386844eae3f879ee4a
+https://explorer.cardano-testnet.iohkdev.io/en/transaction?id=b1c49a5acb9d45d8347c96527c7ee89890290aff5e85f263f323da8ffb58e4c0
 
-
-Meta data is lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
+Like registrations, metadata reports are lodged using the transaction meta data label: "11445640693", which is "CROESUS" in Base31
 
 #### Reporting Validation
 
